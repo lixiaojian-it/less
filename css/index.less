@@ -1,5 +1,74 @@
+/*引入定义的变量(属性值值为变量)*/
 @import './variable.less';
 
-body {
-    background: @color-red;
+/*使用变量插值*/
+@bgImg: "https://yangzw.vip/static/codepen/bg.jpg";
+
+/*选择器、属性名、属性值插值*/
+@page: page;
+@color: color;
+
+.tab {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    li {
+        margin: 30px 50px;
+        a {
+            background-image: linear-gradient(90deg, @color-red, #fff);
+            background-clip: text;
+            line-height: @fs-smaller;
+            font-size: @fs-smaller; 
+            animation: hue 5s linear infinite;
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip:text
+        }
+        @keyframes hue {
+            from {
+                filter: hue-rotate(0);
+            }
+            to {
+                filter: hue-rotate(-1turn);
+            }
+        }
+    }
+}
+
+.@{page} {
+	overflow: auto;
+	perspective: 1px;
+    transform-style: preserve-3d;
+	.content {
+		display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        background: linear-gradient(135deg, #f66, #f90, #3c9, #09f, #66f) left center/400% 400%;
+        font-weight: bold;
+        font-size: 100px;
+        color: #fff;
+        animation: move 10s infinite;
+        white-space: nowrap;
+    }
+    @keyframes move {
+        0%,
+        100% {
+            background-position-x: left;
+        }
+        50% {
+            background-position-x: right;
+        }
+        
+    }
+    .parallax-scrolling {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 1000px;
+        background: url("@{bgImg}") no-repeat center fixed;
+    }
 }
